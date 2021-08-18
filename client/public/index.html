@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+
+  <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"> -->
+  <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <style>
+    /* base */
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500;600;700&display=swap');
+
+    *,
+    *::before,
+    *::after,
+    html,
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto Slab', sans-serif !important;
+    }
+
+    .container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      background: url('./img/bg4.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .wrapper {
+      height: 425px;
+      width: 850px;
+      padding: 0 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      box-shadow: 0px 0px 64px 0px #76202315;
+      border: none;
+      border-radius: 50px;
+    }
+
+    .btn {
+      flex: 0 0 10%;
+      margin: 0 0.5rem;
+      padding: 4px 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 2px;
+      background: none;
+      color: #38b9ff;
+      cursor: pointer;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .btn:hover {
+      box-shadow: 2px 2px 4px 0px #70707070;
+    }
+
+    .logo {
+      height: 100px;
+      width: 100px;
+      margin: 2rem 0;
+      background: url('./img/logo.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .nav-list {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .nav-list a {
+      flex: 0 0 75%;
+      margin: 8px;
+      padding: 0.75rem 0;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      color: #38be34;
+      background: #ececec;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 025s ease-in-out;
+    }
+
+    .nav-list a:hover {
+      background: #ffffff;
+    }
+
+
+    /* landing page */
+    .landing-container {
+      align-items: flex-end;
+    }
+
+    .landing-nav-wrapper {
+      height: 60%;
+      width: 30%;
+      padding: 1rem;
+      justify-content: flex-start;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background: #ffffffcc;
+    }
+
+    .landing-footer-wrapper {
+      height: 17.5%;
+      flex: 0 0 75%;
+      padding: 1rem;
+      justify-content: center;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      background: #ffffffcc;
+    }
+
+    .nav-list a.list-item-anchor-test {
+      flex: 0 0 75%;
+      color: #ffffff;
+      background: #762023;
+    }
+
+    .footer-nav-list {
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-nav-list label {
+      margin: 0 0 0.5rem 0;
+      font-size: 20px;
+      font-weight: 600;
+      color: #262626;
+    }
+
+    .footer-nav-list a {
+      font-size: 18px;
+      font-weight: 500;
+      text-decoration: none;
+      text-align: center;
+      color: #009688;
+    }
+
+    /* login page */
+    .form {
+      margin: 0 0 1rem 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form input {
+      flex: 0 0 85%;
+      margin: 8px 0;
+      padding: 8px 16px;
+      border: 0;
+      border-radius: 50px;
+      background: #cccccccc;
+    }
+
+    /* questions page */
+    .questions-container {
+      position: relative;
+      background: url('./img/bg10.jpeg');
+    }
+
+    #modal {
+      opacity: 0;
+      visibility: hidden;
+      position: absolute;
+      height: 350px;
+      width: 400px;
+      background: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 0px 32px 2px #70707070;
+      border: none;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.5s ease-in-out;
+    }
+
+    .hide {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+
+    .show {
+      opacity: 1 !important;
+      visibility: visible !important;
+    }
+
+    .modal-close {
+      height: 25px;
+      width: 25px;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 1;
+      background: #ffffff;
+      border: 1px solid #707070;
+      border-radius: 50px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .modalImg {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('./img/keepGoing.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+    }
+
+    .modalPic {
+      height: auto;
+      width: 100%;
+    }
+
+    .question-block {
+      height: 120px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .question {
+      font-size: 22px;
+      font-weight: 500;
+      margin: 0;
+      color: #762023;
+    }
+
+    .answer-block {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .option {
+      flex: 0 0 42.5%;
+      margin: 0.5rem 0;
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 400;
+      text-align: center;
+      color: #ffffff;
+      background-color: #38eb34;
+      border-radius: 50px;
+      transition: all 0.25s ease-in-out;
+    }
+
+    .option:hover {
+      background-color: #38be34;
+    }
+
+    .buttons-block {
+      width: 100%;
+      margin: 1rem 0 0 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .btn-close {
+      color: #fa0e0e;
+    }
+
+    /* summary page */
+    .summary-container {
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background: url('./img/bg9.jpeg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    .summary-footer-wrapper {
+      box-shadow: none;
+    }
+
+    .stats-wrapper {
+      height: fit-content;
+      width: 65%;
+      padding: 1rem 3rem;
+      text-align: center;
+      background: #ffffff;
+    }
+
+    .test-over {
+      margin: 1rem auto;
+      font-size: 32px;
+      font-weight: 800;
+      color: #009688;
+    }
+
+    .relaxImg {
+      height: 300px;
+    }
+
+    .score {
+      margin: 0.5rem auto 0 auto;
+      font-size: 24px;
+      font-weight: 700;
+      color: #009688;
+    }
+
+    .remark {
+      margin: 1rem auto;
+      font-size: 24px;
+      font-weight: 600;
+      color: #009688;
+    }
+
+    .stats-details {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      text-align: right;
+      color: #009688;
+    }
+  </style>
+  <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+</body>
+
+</html>
